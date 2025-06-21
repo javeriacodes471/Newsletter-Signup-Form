@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>                         
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exclusive Offer</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="newsletter-box" role="region" aria-label="Discount Signup">
+    
+    <!-- Offer Image -->
+    <figure class="top-image">
+      <img src="image.jpg/ff.jpg" alt="Eye-catching offer visual" loading="lazy" />
+    </figure>
+
+    <!-- Content Section -->
+    <section class="content">
+      <h2>Leaving already? 👀</h2>
+      <p>Grab 20% off before you miss out on a great deal. Sign up now!</p>
+
+<form id="subscribeForm" novalidate>
+  
+  <label for="name" class="visually-hidden">Name</label>
+  <input type="text" id="name" name="name" placeholder="Your name" required />
+
+  <label for="email" class="visually-hidden">Email</label>
+  <input type="email" id="email" name="email" placeholder="Your email" required />
+
+  <label class="checkbox">
+    <input type="checkbox" id="consent" name="consent" required />
+    <span>I’d like to get special offers in my inbox</span>
+  </label>
+
+  <button type="submit">Claim Discount</button>
+  <small class="disclaimer">We respect your privacy. Unsubscribe anytime.</small>
+
+  <p id="success" hidden>🎉 You're in! Check your inbox for the discount.</p>
+</form>
+
+    </section>
+
+  </main>
+<script>
+  const form = document.getElementById('subscribeForm');
+  const successMsg = document.getElementById('success');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // prevent form from refreshing the page
+
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const consent = document.getElementById('consent');
+
+    // Basic email regex
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    // Reset previous messages
+    successMsg.hidden = true;
+
+    // Validation checks
+    if (name.value.trim() === '') {
+      alert("Please enter your name.");
+      name.focus();
+      return;
+    }
+
+    if (!emailPattern.test(email.value.trim())) {
+      alert("Please enter a valid email address.");
+      email.focus();
+      return;
+    }
+
+    if (!consent.checked) {
+      alert("Please agree to receive special offers.");
+      return;
+    }
+
+    // If all is valid
+    successMsg.hidden = false;
+    form.reset(); // Clear form
+  });
+</script>
+
+
+
+</body>
+</html>
